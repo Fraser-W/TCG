@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://blht3fuuk08hg"]
+
+[ext_resource type="PackedScene" uid="uid://mxyemyh36e7a" path="res://temp_assets/table/Desk.fbx" id="1_g2856"]
+[ext_resource type="PackedScene" uid="uid://cvfoxd6rwm2bd" path="res://Scenes/Card3D.tscn" id="2_p25x7"]
+
+[node name="GameplayScene3D" type="Node3D"]
+
+[node name="PlayerHand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 320.85, 187.176)
+
+[node name="Card3D7" parent="PlayerHand" instance=ExtResource("2_p25x7")]
+transform = Transform3D(1, 0, -4.37114e-08, -4.37114e-08, 1.91069e-15, -1, 0, 1, 1.91069e-15, 0, 20.917, -0.175293)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1.08525, 0, 0, 0, 1.08525, 0, 0, 0, 1.08525, 0, 400, 280)
+metadata/_edit_lock_ = true
+
+[node name="Desk" parent="." instance=ExtResource("1_g2856")]
+transform = Transform3D(390.764, 0, 0, 0, 390.764, 0, 0, 0, 390.764, 0, 0, 0)
+
+[node name="Card3D" parent="." instance=ExtResource("2_p25x7")]
+transform = Transform3D(0.997959, 0, -0.063853, 0, 1, 0, 0.063853, 0, 0.997959, -44.3051, 317.823, 95.5273)
+
+[node name="Card3D2" parent="." instance=ExtResource("2_p25x7")]
+transform = Transform3D(0.978242, 0, 0.207468, 0, 1, 0, -0.207468, 0, 0.978242, -130.99, 317.823, 95.5273)
+
+[node name="Card3D3" parent="." instance=ExtResource("2_p25x7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91.632, 317.823, 95.5273)
+
+[node name="Card3D4" parent="." instance=ExtResource("2_p25x7")]
+transform = Transform3D(0.994674, 0, 0.10307, 0, 1, 0, -0.10307, 0, 0.994674, -0.299194, 317.823, 95.5273)

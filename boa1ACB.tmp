@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvv6skuectnm3"]
+
+[ext_resource type="PackedScene" uid="uid://djqvbijfnvdbc" path="res://slot.tscn" id="1_6qq70"]
+[ext_resource type="Script" path="res://hand.gd" id="4_jnko1"]
+
+[node name="board" type="Node2D"]
+
+[node name="battle_ui" type="CanvasLayer" parent="."]
+
+[node name="slots" type="HBoxContainer" parent="battle_ui"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 56.0
+offset_right = 20.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+
+[node name="slot" parent="battle_ui/slots" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="slot2" parent="battle_ui/slots" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="slot3" parent="battle_ui/slots" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="slot4" parent="battle_ui/slots" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="slot5" parent="battle_ui/slots" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="hand" type="HBoxContainer" parent="battle_ui"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -104.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 70
+alignment = 1
+script = ExtResource("4_jnko1")
+
+[connection signal="gui_input" from="battle_ui/hand" to="battle_ui/hand" method="_on_gui_input"]

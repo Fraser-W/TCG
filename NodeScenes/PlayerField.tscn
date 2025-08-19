@@ -1,0 +1,237 @@
+[gd_scene load_steps=14 format=3 uid="uid://4n7t2y1sa530"]
+
+[ext_resource type="Script" uid="uid://bak045rvabgrx" path="res://Scripts/GameSetup.gd" id="1_7mxg5"]
+[ext_resource type="PackedScene" uid="uid://djqvbijfnvdbc" path="res://summon_scene.tscn" id="1_p58ui"]
+[ext_resource type="Script" uid="uid://cs7dl3gyovy62" path="res://GameManager.gd" id="3_3qecq"]
+[ext_resource type="Script" uid="uid://ck05ay3l3lcdr" path="res://trait_handler.gd" id="4_3sk4k"]
+[ext_resource type="PackedScene" uid="uid://c250y1h55d4o2" path="res://hero.tscn" id="6_4g0xj"]
+[ext_resource type="Script" uid="uid://cd2m0f7yqyh3i" path="res://effects_handler.gd" id="6_7rbcc"]
+[ext_resource type="PackedScene" uid="uid://d18kw5sos51f6" path="res://end_turn.tscn" id="7_207gg"]
+[ext_resource type="Script" uid="uid://bjym78nsjcr1w" path="res://hand.gd" id="8_4kcx3"]
+[ext_resource type="Script" uid="uid://dvn60jcw68qcx" path="res://player_deck_handler.gd" id="11_gvf0r"]
+[ext_resource type="Texture2D" uid="uid://dl38n6jfkg0qn" path="res://temp_assets/TEMP_board_background_texture.jpg" id="12_kk5ar"]
+[ext_resource type="PackedScene" uid="uid://dmaj1y0wafc34" path="res://turn_indicator/turn_indicator.tscn" id="14_677i1"]
+[ext_resource type="Script" uid="uid://dmbtr7de2nnpd" path="res://turn_timer.gd" id="15_tw5s6"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_a2eeq"]
+properties/0/path = NodePath(".:attack_sequence")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="PlayerField" type="Node2D"]
+script = ExtResource("1_7mxg5")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_3qecq")
+max_hand_size = 6
+
+[node name="trait_handler" type="Node" parent="GameManager"]
+script = ExtResource("4_3sk4k")
+
+[node name="trait_box" type="VBoxContainer" parent="GameManager/trait_handler"]
+offset_left = 18.0
+offset_top = 91.0
+offset_right = 58.0
+offset_bottom = 301.0
+theme_override_constants/separation = 70
+
+[node name="effects_handler" type="Node" parent="GameManager"]
+script = ExtResource("6_7rbcc")
+
+[node name="darken_effect" type="ColorRect" parent="GameManager/effects_handler"]
+visible = false
+modulate = Color(0.164706, 0.164706, 0.164706, 0.486275)
+offset_right = 1820.0
+offset_bottom = 980.0
+mouse_filter = 2
+
+[node name="player_summons" type="HBoxContainer" parent="GameManager"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.0
+offset_top = -17.0
+offset_right = 487.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 220
+metadata/_edit_use_anchors_ = true
+
+[node name="player_summon_01" parent="GameManager/player_summons" instance=ExtResource("1_p58ui")]
+layout_mode = 2
+is_player_summon = true
+slot_number = 1
+
+[node name="player_summon_02" parent="GameManager/player_summons" instance=ExtResource("1_p58ui")]
+layout_mode = 2
+is_player_summon = true
+slot_number = 2
+
+[node name="player_summon_03" parent="GameManager/player_summons" instance=ExtResource("1_p58ui")]
+layout_mode = 2
+is_player_summon = true
+slot_number = 3
+
+[node name="player_summon_04" parent="GameManager/player_summons" instance=ExtResource("1_p58ui")]
+layout_mode = 2
+is_player_summon = true
+slot_number = 4
+
+[node name="player_summon_05" parent="GameManager/player_summons" instance=ExtResource("1_p58ui")]
+layout_mode = 2
+is_player_summon = true
+slot_number = 5
+
+[node name="player_deck_handler" type="Node" parent="GameManager"]
+script = ExtResource("11_gvf0r")
+
+[node name="player_deck" type="Control" parent="GameManager/player_deck_handler"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1608.0
+offset_top = 584.0
+offset_right = 1648.0
+offset_bottom = 624.0
+metadata/_edit_use_anchors_ = true
+
+[node name="deck_counter" type="RichTextLabel" parent="GameManager/player_deck_handler/player_deck"]
+visible = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = -55.0
+offset_right = 52.0
+offset_bottom = -2.0
+theme_override_font_sizes/normal_font_size = 38
+text = "0"
+
+[node name="player_discard" type="Control" parent="GameManager/player_deck_handler"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 92.0
+offset_top = 628.0
+offset_right = 132.0
+offset_bottom = 668.0
+metadata/_edit_use_anchors_ = true
+
+[node name="discard_counter" type="RichTextLabel" parent="GameManager/player_deck_handler/player_discard"]
+visible = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = -55.0
+offset_right = 52.0
+offset_bottom = -2.0
+theme_override_font_sizes/normal_font_size = 38
+text = "0"
+
+[node name="hand_handler" type="HBoxContainer" parent="GameManager/player_deck_handler"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -260.0
+offset_right = -9.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 210
+alignment = 1
+script = ExtResource("8_4kcx3")
+metadata/_edit_use_anchors_ = true
+
+[node name="turn_handler" type="Node" parent="GameManager"]
+
+[node name="turn_indicator" parent="GameManager/turn_handler" instance=ExtResource("14_677i1")]
+offset_left = 0.0
+offset_right = 578.0
+offset_bottom = 68.0
+
+[node name="turn_timer" type="Timer" parent="GameManager/turn_handler/turn_indicator"]
+wait_time = 30.0
+autostart = true
+script = ExtResource("15_tw5s6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameManager/turn_handler/turn_indicator/turn_timer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -86.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 44
+text = "30"
+
+[node name="end_turn" parent="GameManager/turn_handler" instance=ExtResource("7_207gg")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -20.0
+offset_right = -85.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="player_hero" parent="GameManager" instance=ExtResource("6_4g0xj")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 565.0
+offset_top = -420.0
+offset_right = 605.0
+offset_bottom = -380.0
+grow_horizontal = 2
+grow_vertical = 0
+is_player = true
+metadata/_edit_use_anchors_ = true
+
+[node name="player_discard_handler" type="Node" parent="GameManager"]
+
+[node name="player_graveyard_handler" type="Node" parent="GameManager"]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="GameManager"]
+replication_config = SubResource("SceneReplicationConfig_a2eeq")
+
+[node name="Mana" type="Node" parent="GameManager"]
+
+[node name="CurrentMana" type="RichTextLabel" parent="GameManager/Mana"]
+offset_left = 1701.0
+offset_top = 512.0
+offset_right = 1748.0
+offset_bottom = 561.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]0[/center]"
+
+[node name="MaxMana" type="RichTextLabel" parent="GameManager/Mana"]
+offset_left = 1742.0
+offset_top = 512.0
+offset_right = 1804.0
+offset_bottom = 565.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "/0"
+
+[node name="BoardBackground" type="TextureRect" parent="."]
+offset_right = 4800.0
+offset_bottom = 3200.0
+scale = Vector2(0.384779, 0.384779)
+mouse_filter = 2
+texture = ExtResource("12_kk5ar")
+
+[connection signal="timeout" from="GameManager/turn_handler/turn_indicator/turn_timer" to="GameManager" method="_on_turn_timer_timeout"]

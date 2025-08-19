@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cksuum2iq0kuf"]
+
+[ext_resource type="Script" uid="uid://kk3n8565inh8" path="res://deck.gd" id="1_gmsr2"]
+
+[sub_resource type="Gradient" id="Gradient_oo40j"]
+offsets = PackedFloat32Array(0, 0.519481, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.768244, 0.621492, 9.62615e-07, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eaecy"]
+gradient = SubResource("Gradient_oo40j")
+width = 60
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un2s7"]
+size = Vector2(62.5, 87.5)
+
+[node name="deck" type="Node2D"]
+script = ExtResource("1_gmsr2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 62.5
+offset_bottom = 87.5
+texture = SubResource("GradientTexture2D_eaecy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(31.25, 43.75)
+shape = SubResource("RectangleShape2D_un2s7")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ducnfr1gc4304"]
+
+[ext_resource type="Script" uid="uid://cswuosghlgkdb" path="res://hp_ui.gd" id="1_1ca6q"]
+[ext_resource type="Texture2D" uid="uid://d0scijcfi7aaq" path="res://temp_icons/hp_bar.png" id="2_u0uej"]
+
+[node name="hp" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1ca6q")
+
+[node name="hp" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 55.0
+offset_bottom = 35.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "10
+"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -12.0
+offset_right = 446.0
+offset_bottom = 173.0
+scale = Vector2(0.196155, 0.196155)
+mouse_filter = 2
+value = 100.0
+rounded = true
+texture_progress = ExtResource("2_u0uej")

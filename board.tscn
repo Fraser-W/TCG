@@ -1,0 +1,268 @@
+[gd_scene load_steps=16 format=3 uid="uid://bvv6skuectnm3"]
+
+[ext_resource type="PackedScene" uid="uid://djqvbijfnvdbc" path="res://summon_scene.tscn" id="1_6qq70"]
+[ext_resource type="Script" uid="uid://cs7dl3gyovy62" path="res://GameManager.gd" id="1_8o35v"]
+[ext_resource type="Script" uid="uid://c1fbdk11vgccb" path="res://turn_handler.gd" id="2_angv6"]
+[ext_resource type="Script" uid="uid://cd2m0f7yqyh3i" path="res://effects_handler.gd" id="2_i2wrc"]
+[ext_resource type="Script" uid="uid://lcqsws0nilfy" path="res://enemy_summons.gd" id="2_quylr"]
+[ext_resource type="Script" uid="uid://dmbtr7de2nnpd" path="res://turn_timer.gd" id="3_lkybo"]
+[ext_resource type="Script" uid="uid://ck05ay3l3lcdr" path="res://trait_handler.gd" id="3_mcrm4"]
+[ext_resource type="Script" uid="uid://bjym78nsjcr1w" path="res://hand.gd" id="4_jnko1"]
+[ext_resource type="Script" uid="uid://dvn60jcw68qcx" path="res://player_deck_handler.gd" id="5_2f4ym"]
+[ext_resource type="Script" uid="uid://eecbrixc6f71" path="res://enemy_deck_handler.gd" id="5_edsei"]
+[ext_resource type="PackedScene" uid="uid://d18kw5sos51f6" path="res://end_turn.tscn" id="5_n6q4g"]
+[ext_resource type="Script" uid="uid://2q717gakpwvr" path="res://Scripts/Cards/CardList.gd" id="6_g8pgp"]
+[ext_resource type="Script" uid="uid://dmr1usyv4dh8k" path="res://enemy_hand_handler.gd" id="6_p3gvd"]
+[ext_resource type="PackedScene" uid="uid://dmaj1y0wafc34" path="res://turn_indicator/turn_indicator.tscn" id="10_iadgi"]
+[ext_resource type="PackedScene" uid="uid://c250y1h55d4o2" path="res://hero.tscn" id="15_ftogy"]
+
+[node name="board" type="Node2D"]
+
+[node name="complete_card_list" type="Node" parent="."]
+script = ExtResource("6_g8pgp")
+
+[node name="battle_handler" type="Node" parent="."]
+script = ExtResource("1_8o35v")
+max_hand_size = 6
+
+[node name="trait_handler" type="Node" parent="battle_handler"]
+script = ExtResource("3_mcrm4")
+
+[node name="trait_box" type="VBoxContainer" parent="battle_handler/trait_handler"]
+offset_left = 18.0
+offset_top = 91.0
+offset_right = 58.0
+offset_bottom = 301.0
+theme_override_constants/separation = 70
+
+[node name="effects_handler" type="Node" parent="battle_handler"]
+script = ExtResource("2_i2wrc")
+
+[node name="darken_effect" type="ColorRect" parent="battle_handler/effects_handler"]
+visible = false
+modulate = Color(0.164706, 0.164706, 0.164706, 0.486275)
+offset_right = 1820.0
+offset_bottom = 980.0
+mouse_filter = 2
+
+[node name="enemy_summons" type="HBoxContainer" parent="battle_handler"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -392.0
+offset_top = -257.0
+offset_right = 488.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 220
+script = ExtResource("2_quylr")
+metadata/_edit_use_anchors_ = true
+
+[node name="enemy_summon_01" parent="battle_handler/enemy_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="enemy_summon_02" parent="battle_handler/enemy_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="enemy_summon_03" parent="battle_handler/enemy_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="enemy_summon_04" parent="battle_handler/enemy_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="enemy_summon_05" parent="battle_handler/enemy_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+
+[node name="enemy_deck_handler" type="Node" parent="battle_handler"]
+script = ExtResource("5_edsei")
+
+[node name="enemy_hand_handler" type="HBoxContainer" parent="battle_handler/enemy_deck_handler"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.0
+offset_top = -148.0
+offset_right = -39.0
+offset_bottom = -108.0
+grow_horizontal = 2
+theme_override_constants/separation = 210
+alignment = 1
+script = ExtResource("6_p3gvd")
+max_hand_size = 10
+
+[node name="player_summons" type="HBoxContainer" parent="battle_handler"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.0
+offset_top = -17.0
+offset_right = 487.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 220
+metadata/_edit_use_anchors_ = true
+
+[node name="player_summon_01" parent="battle_handler/player_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+is_player_summon = true
+
+[node name="player_summon_02" parent="battle_handler/player_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+is_player_summon = true
+
+[node name="player_summon_03" parent="battle_handler/player_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+is_player_summon = true
+
+[node name="player_summon_04" parent="battle_handler/player_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+is_player_summon = true
+
+[node name="player_summon_05" parent="battle_handler/player_summons" instance=ExtResource("1_6qq70")]
+layout_mode = 2
+is_player_summon = true
+
+[node name="player_deck_handler" type="Node" parent="battle_handler"]
+script = ExtResource("5_2f4ym")
+
+[node name="player_deck" type="Control" parent="battle_handler/player_deck_handler"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1608.0
+offset_top = 584.0
+offset_right = 1648.0
+offset_bottom = 624.0
+metadata/_edit_use_anchors_ = true
+
+[node name="deck_counter" type="RichTextLabel" parent="battle_handler/player_deck_handler/player_deck"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -55.0
+offset_right = 52.0
+offset_bottom = -2.0
+theme_override_font_sizes/normal_font_size = 38
+text = "0"
+
+[node name="player_discard" type="Control" parent="battle_handler/player_deck_handler"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 92.0
+offset_top = 628.0
+offset_right = 132.0
+offset_bottom = 668.0
+metadata/_edit_use_anchors_ = true
+
+[node name="discard_counter" type="RichTextLabel" parent="battle_handler/player_deck_handler/player_discard"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -55.0
+offset_right = 52.0
+offset_bottom = -2.0
+theme_override_font_sizes/normal_font_size = 38
+text = "0"
+
+[node name="hand_handler" type="HBoxContainer" parent="battle_handler/player_deck_handler"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -260.0
+offset_right = -9.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 210
+alignment = 1
+script = ExtResource("4_jnko1")
+metadata/_edit_use_anchors_ = true
+
+[node name="turn_handler" type="Node" parent="battle_handler"]
+script = ExtResource("2_angv6")
+
+[node name="turn_indicator" parent="battle_handler/turn_handler" instance=ExtResource("10_iadgi")]
+offset_left = 0.0
+offset_right = 578.0
+offset_bottom = 68.0
+
+[node name="turn_timer" type="Timer" parent="battle_handler/turn_handler/turn_indicator"]
+wait_time = 30.0
+autostart = true
+script = ExtResource("3_lkybo")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="battle_handler/turn_handler/turn_indicator/turn_timer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -86.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 44
+text = "30"
+
+[node name="end_turn" parent="battle_handler/turn_handler" instance=ExtResource("5_n6q4g")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -20.0
+offset_right = -85.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="player_hero" parent="battle_handler" instance=ExtResource("15_ftogy")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 565.0
+offset_top = -420.0
+offset_right = 605.0
+offset_bottom = -380.0
+grow_horizontal = 2
+grow_vertical = 0
+is_player = true
+metadata/_edit_use_anchors_ = true
+
+[node name="enemy_hero" parent="battle_handler" instance=ExtResource("15_ftogy")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 563.0
+offset_top = 238.0
+offset_right = 603.0
+offset_bottom = 278.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="player_discard_handler" type="Node" parent="battle_handler"]
+
+[node name="enemy_discard_handler" type="Node" parent="battle_handler"]
+
+[node name="player_graveyard_handler" type="Node" parent="battle_handler"]
+
+[node name="enemy_graveyard_handler" type="Node" parent="battle_handler"]
+
+[node name="vfx_handler" type="Node" parent="."]
+
+[node name="sfx_handler" type="Node" parent="."]
+
+[connection signal="timeout" from="battle_handler/turn_handler/turn_indicator/turn_timer" to="battle_handler" method="_on_turn_timer_timeout"]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmaj1y0wafc34"]
+
+[ext_resource type="Script" uid="uid://bcxraughc5rf2" path="res://turn_indicator/turn_indicator.gd" id="1_63obn"]
+[ext_resource type="Texture2D" uid="uid://ds06rmvo3ifqn" path="res://turn_indicator/icons/d_icon.png" id="1_rykl3"]
+
+[node name="turn_indicator" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_right = 574.0
+offset_bottom = 67.0
+script = ExtResource("1_63obn")
+
+[node name="icon_controller" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 31.0
+offset_right = 529.0
+offset_bottom = 37.0
+theme_override_constants/separation = 80
+
+[node name="turn_01_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_01_icon" type="Sprite2D" parent="icon_controller/turn_01_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_02_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_02_icon" type="Sprite2D" parent="icon_controller/turn_02_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_03_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_03_icon" type="Sprite2D" parent="icon_controller/turn_03_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_04_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_04_icon" type="Sprite2D" parent="icon_controller/turn_04_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_05_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_05_icon" type="Sprite2D" parent="icon_controller/turn_05_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_06_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_06_icon" type="Sprite2D" parent="icon_controller/turn_06_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_07_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_07_icon" type="Sprite2D" parent="icon_controller/turn_07_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_08_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_08_icon" type="Sprite2D" parent="icon_controller/turn_08_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_09_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_09_icon" type="Sprite2D" parent="icon_controller/turn_09_control"]
+texture = ExtResource("1_rykl3")
+
+[node name="turn_10_control" type="Control" parent="icon_controller"]
+visible = false
+layout_mode = 2
+
+[node name="turn_10_icon" type="Sprite2D" parent="icon_controller/turn_10_control"]
+texture = ExtResource("1_rykl3")

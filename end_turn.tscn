@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://d18kw5sos51f6"]
+
+[ext_resource type="Script" uid="uid://dshem3gj6urd3" path="res://end_turn_new.gd" id="1_d840g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8l7c"]
+size = Vector2(96, 39)
+
+[node name="end_turn" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 97.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_d840g")
+
+[node name="hover" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 99.0
+offset_bottom = 42.0
+mouse_filter = 2
+color = Color(1, 0.352941, 0.219608, 1)
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 39.0
+mouse_filter = 1
+
+[node name="button_colour" type="ColorRect" parent="TextureButton"]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 39.0
+mouse_filter = 2
+color = Color(1, 1, 0.219608, 1)
+
+[node name="button_disabled_colour" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 39.0
+mouse_filter = 2
+color = Color(0.482353, 0.482353, 0.47451, 0.792157)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -4.0
+offset_right = 119.0
+offset_bottom = 53.0
+scale = Vector2(0.865603, 0.887231)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "END"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(48, 19.5)
+shape = SubResource("RectangleShape2D_p8l7c")
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

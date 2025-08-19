@@ -1,0 +1,253 @@
+[gd_scene load_steps=15 format=3 uid="uid://kioj8supye3i"]
+
+[ext_resource type="Script" uid="uid://cgtl7vs3qdc2v" path="res://card.gd" id="1_wlbbc"]
+[ext_resource type="Texture2D" uid="uid://bsq2csp1bqurb" path="res://temp_icons/mana_icon.png" id="2_6lcat"]
+[ext_resource type="Texture2D" uid="uid://tov0742fmpgj" path="res://card/card_ui_icons/hp_icon.png" id="2_l1o7u"]
+[ext_resource type="FontFile" uid="uid://c6mb1w04jd63p" path="res://font/Comfortaa-Bold.ttf" id="3_31i40"]
+[ext_resource type="Texture2D" uid="uid://bfgn02rdhy566" path="res://card/card_ui_icons/shield_icon.png" id="5_5u5n7"]
+[ext_resource type="Texture2D" uid="uid://yl88stgkjfm3" path="res://card/card_ui_icons/swords_icon.png" id="6_p7h3e"]
+[ext_resource type="Texture2D" uid="uid://c5w72gie6pwi7" path="res://temp_icons/temp_artifact_icon.png" id="8_ru2em"]
+[ext_resource type="Texture2D" uid="uid://jsxrr53kwlcq" path="res://temp_icons/temp_armour_icon.png" id="9_kdc4h"]
+[ext_resource type="Texture2D" uid="uid://v5kwh6oiprx1" path="res://temp_icons/temp_weapon_icon.png" id="10_bcgye"]
+[ext_resource type="Texture2D" uid="uid://dfdfb31tdwll6" path="res://temp_assets/table/textures/stone_effect.png" id="10_ut1v0"]
+
+[sub_resource type="Gradient" id="Gradient_sannt"]
+offsets = PackedFloat32Array(0.993506, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_24gld"]
+gradient = SubResource("Gradient_sannt")
+width = 31
+
+[sub_resource type="Theme" id="Theme_1r541"]
+default_font = ExtResource("3_31i40")
+default_font_size = 51
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vwmu"]
+size = Vector2(200, 275)
+
+[node name="card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 275.0
+mouse_filter = 2
+script = ExtResource("1_wlbbc")
+metadata/_edit_lock_ = true
+
+[node name="Focus" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 206.0
+offset_bottom = 279.0
+mouse_filter = 2
+color = Color(1, 0.407843, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="PlayableGlow" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 205.0
+offset_bottom = 279.0
+mouse_filter = 2
+color = Color(0, 0.807843, 0, 1)
+
+[node name="CanAttackGlow" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 205.0
+offset_bottom = 279.0
+mouse_filter = 2
+color = Color(0.926299, 2.5028e-06, 1.54018e-06, 1)
+
+[node name="CardArt" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 275.0
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_24gld")
+metadata/_edit_lock_ = true
+
+[node name="NameBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 199.0
+offset_bottom = 16.0
+mouse_filter = 2
+color = Color(1, 0.764706, 0.368627, 1)
+
+[node name="NameText" type="RichTextLabel" parent="NameBackground"]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 200.0
+offset_bottom = 17.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "[center]Name[/center]"
+
+[node name="CardCost" type="Sprite2D" parent="."]
+position = Vector2(10, 6)
+scale = Vector2(0.251726, 0.251726)
+texture = ExtResource("2_6lcat")
+metadata/_edit_lock_ = true
+
+[node name="CardCostDigit" type="RichTextLabel" parent="CardCost"]
+offset_left = -64.6221
+offset_top = -44.7593
+offset_right = 63.3779
+offset_bottom = 73.2407
+mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 63
+bbcode_enabled = true
+text = "[center]99[/center]"
+
+[node name="TextBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 156.0
+offset_right = 200.0
+offset_bottom = 274.0
+mouse_filter = 2
+color = Color(1, 0.764706, 0.368627, 1)
+metadata/_edit_lock_ = true
+
+[node name="SpellUI" type="Node2D" parent="."]
+
+[node name="ArtifactUI" type="Node2D" parent="."]
+
+[node name="EquipmentUI" type="Node2D" parent="."]
+
+[node name="ActiveSkillText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 187.0
+offset_right = 165.0
+offset_bottom = 247.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 19
+text = "Active Skill Text"
+
+[node name="MonsterUI" type="Node2D" parent="."]
+
+[node name="Race_Class_Text" type="RichTextLabel" parent="MonsterUI"]
+offset_left = -2.0
+offset_top = 241.0
+offset_right = 196.0
+offset_bottom = 281.0
+mouse_filter = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]race/class[/center]"
+
+[node name="hp_icon" type="Sprite2D" parent="MonsterUI"]
+position = Vector2(176, 139)
+scale = Vector2(0.339759, 0.315492)
+texture = ExtResource("2_l1o7u")
+
+[node name="hp_string" type="RichTextLabel" parent="MonsterUI/hp_icon"]
+offset_left = -38.7098
+offset_top = -20.8437
+offset_right = 42.2902
+offset_bottom = 42.1563
+mouse_filter = 2
+theme = SubResource("Theme_1r541")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "99"
+
+[node name="SwordsIcon" type="Sprite2D" parent="MonsterUI"]
+position = Vector2(19, 135)
+scale = Vector2(0.387428, 0.387428)
+texture = ExtResource("6_p7h3e")
+
+[node name="attack_string" type="RichTextLabel" parent="MonsterUI/SwordsIcon"]
+offset_left = -27.0
+offset_top = -18.0
+offset_right = 77.0
+offset_bottom = 54.0
+mouse_filter = 2
+theme = SubResource("Theme_1r541")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "99"
+
+[node name="shield_icon" type="Sprite2D" parent="MonsterUI"]
+position = Vector2(96, 139)
+scale = Vector2(0.307579, 0.307579)
+texture = ExtResource("5_5u5n7")
+
+[node name="armour_string" type="RichTextLabel" parent="MonsterUI/shield_icon"]
+offset_left = -32.0
+offset_top = -21.0
+offset_right = 56.0
+offset_bottom = 49.0
+mouse_filter = 2
+theme = SubResource("Theme_1r541")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "99"
+metadata/_edit_use_anchors_ = true
+
+[node name="artifact_icon" type="Sprite2D" parent="MonsterUI"]
+position = Vector2(136, 233)
+rotation = -0.00188454
+texture = ExtResource("8_ru2em")
+
+[node name="armour_icon" type="Sprite2D" parent="MonsterUI"]
+position = Vector2(98, 230)
+texture = ExtResource("9_kdc4h")
+
+[node name="weapon_icon" type="Sprite2D" parent="MonsterUI"]
+position = Vector2(59, 233)
+texture = ExtResource("10_bcgye")
+
+[node name="PassiveSkillText" type="RichTextLabel" parent="MonsterUI"]
+offset_left = 5.0
+offset_top = 158.0
+offset_right = 198.0
+offset_bottom = 227.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+text = "Passive Skill Text"
+
+[node name="stone_effect" type="Sprite2D" parent="MonsterUI"]
+visible = false
+position = Vector2(100, 138)
+texture = ExtResource("10_ut1v0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(99.5, 138)
+shape = SubResource("RectangleShape2D_1vwmu")
+metadata/_edit_lock_ = true
+
+[node name="2d_test" type="ColorRect" parent="Area2D/CollisionShape2D"]
+visible = false
+offset_left = -100.0
+offset_top = -137.0
+offset_right = 100.0
+offset_bottom = 137.0
+mouse_filter = 2
+color = Color(0, 0.443137, 0.862745, 0.329412)
+metadata/_edit_lock_ = true
+
+[node name="CardBack" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 275.0
+mouse_filter = 2
+color = Color(0.333333, 0.109804, 0, 1)
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
